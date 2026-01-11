@@ -1,4 +1,4 @@
-import { PublicKey, SYSVAR_RENT_PUBKEY, TransactionInstruction } from '@solana/web3.js';
+import { PublicKey, SYSVAR_RENT_PUBKEY, TransactionInstruction } from '@trezoa/web3.js';
 import { Schedule } from './state';
 import { Numberu32 } from './utils';
 

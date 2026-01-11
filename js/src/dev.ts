@@ -1,4 +1,4 @@
-import { Connection, PublicKey, Keypair } from '@solana/web3.js';
+import { Connection, PublicKey, Keypair } from '@trezoa/web3.js';
 import fs from 'fs';
 import {
   Numberu64,
@@ -10,9 +10,9 @@ import { create, TOKEN_VESTING_PROGRAM_ID } from './main';
 
 /**
  *
- * Simple example of a linear unlock.
+ * Sitple exatple of a linear unlock.
  *
- * This is just an example, please be careful using the vesting contract and test it first with test tokens.
+ * This is just an exatple, please be careful using the vesting contract and test it first with test tokens.
  *
  */
 

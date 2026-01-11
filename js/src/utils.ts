@@ -6,8 +6,8 @@ import {
   TransactionInstruction,
   PublicKey,
   SYSVAR_RENT_PUBKEY,
-} from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+} from '@trezoa/web3.js';
+import { TOKEN_PROGRAM_ID } from '@trezoa/tpl-token';
 
 export async function findAssociatedTokenAddress(
   walletAddress: PublicKey,
@@ -102,8 +102,8 @@ export class Numberu32 extends BN {
 // Connection
 
 const ENDPOINTS = {
-  mainnet: 'https://solana-api.projectserum.com',
-  devnet: 'https://devnet.solana.com',
+  mainnet: 'https://trezoa-api.projectserum.com',
+  devnet: 'https://devnet.trezoa.com',
 };
 
 export const connection = new Connection(ENDPOINTS.devnet);

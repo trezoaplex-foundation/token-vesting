@@ -5,14 +5,14 @@ authors = ["Bonfida <contact@bonfida.com>"]
 edition = "2018"
 
 [dependencies]
-solana-program = "1.10.38"
-solana-client = "1.10.38"
-solana-sdk = "1.10.38"
-solana-clap-utils = "1.10.38"
+trezoa-program = "1.10.38"
+trezoa-client = "1.10.38"
+trezoa-sdk = "1.10.38"
+trezoa-clap-utils = "1.10.38"
 token-vesting =  { version = "0.1.0", path="../program", features=["no-entrypoint"] }
-spl-token = {version = "3.3.1", features = ["no-entrypoint"]}
+tpl-token = {version = "3.3.1", features = ["no-entrypoint"]}
 spl-associated-token-account = {version = "1.1.1", features = ["no-entrypoint"]}
-solana-remote-wallet = "1.10.38"
+trezoa-remote-wallet = "1.10.38"
 uriparse = "0.6.3"
 clap = "2.33.3"
 chrono = "0.4.19"

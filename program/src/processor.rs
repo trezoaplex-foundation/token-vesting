@@ -1,4 +1,4 @@
-use solana_program::{
+use trezoa_program::{
     account_info::{next_account_info, AccountInfo},
     decode_error::DecodeError,
     entrypoint::ProgramResult,
@@ -14,7 +14,7 @@ use solana_program::{
 };
 
 use num_traits::FromPrimitive;
-use spl_token::{instruction::transfer, state::Account};
+use tpl_token::{instruction::transfer, state::Account};
 
 use crate::{
     error::VestingError,
@@ -24,7 +24,7 @@ use crate::{
 
 pub struct Processor {}
 
-impl Processor {
+itpl Processor {
     pub fn process_init(
         program_id: &Pubkey,
         accounts: &[AccountInfo],
@@ -79,7 +79,7 @@ impl Processor {
     ) -> ProgramResult {
         let accounts_iter = &mut accounts.iter();
 
-        let spl_token_account = next_account_info(accounts_iter)?;
+        let tpl_token_account = next_account_info(accounts_iter)?;
         let vesting_account = next_account_info(accounts_iter)?;
         let vesting_token_account = next_account_info(accounts_iter)?;
         let source_token_account_owner = next_account_info(accounts_iter)?;
@@ -162,7 +162,7 @@ impl Processor {
         };
 
         let transfer_tokens_to_vesting_account = transfer(
-            spl_token_account.key,
+            tpl_token_account.key,
             source_token_account.key,
             vesting_token_account.key,
             source_token_account_owner.key,
@@ -175,7 +175,7 @@ impl Processor {
             &[
                 source_token_account.clone(),
                 vesting_token_account.clone(),
-                spl_token_account.clone(),
+                tpl_token_account.clone(),
                 source_token_account_owner.clone(),
             ],
         )?;
@@ -189,7 +189,7 @@ impl Processor {
     ) -> ProgramResult {
         let accounts_iter = &mut _accounts.iter();
 
-        let spl_token_account = next_account_info(accounts_iter)?;
+        let tpl_token_account = next_account_info(accounts_iter)?;
         let clock_sysvar_account = next_account_info(accounts_iter)?;
         let vesting_account = next_account_info(accounts_iter)?;
         let vesting_token_account = next_account_info(accounts_iter)?;
@@ -201,7 +201,7 @@ impl Processor {
             return Err(ProgramError::InvalidArgument);
         }
 
-        if spl_token_account.key != &spl_token::id() {
+        if tpl_token_account.key != &tpl_token::id() {
             msg!("The provided spl token program account is invalid");
             return Err(ProgramError::InvalidArgument)
         }
@@ -239,7 +239,7 @@ impl Processor {
         }
 
         let transfer_tokens_from_vesting_account = transfer(
-            &spl_token_account.key,
+            &tpl_token_account.key,
             &vesting_token_account.key,
             destination_token_account.key,
             &vesting_account_key,
@@ -250,7 +250,7 @@ impl Processor {
         invoke_signed(
             &transfer_tokens_from_vesting_account,
             &[
-                spl_token_account.clone(),
+                tpl_token_account.clone(),
                 vesting_token_account.clone(),
                 destination_token_account.clone(),
                 vesting_account.clone(),
@@ -258,7 +258,7 @@ impl Processor {
             &[&[&seeds]],
         )?;
 
-        // Reset released amounts to 0. This makes the simple unlock safe with complex scheduling contracts
+        // Reset released amounts to 0. This makes the sitple unlock safe with cotplex scheduling contracts
         pack_schedules_into_slice(
             schedules,
             &mut packed_state.borrow_mut()[VestingScheduleHeader::LEN..],
@@ -361,7 +361,7 @@ impl Processor {
     }
 }
 
-impl PrintProgramError for VestingError {
+itpl PrintProgramError for VestingError {
     fn print<E>(&self)
     where
         E: 'static + std::error::Error + DecodeError<E> + PrintProgramError + FromPrimitive,

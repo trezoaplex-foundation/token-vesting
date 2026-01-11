@@ -1,18 +1,18 @@
 use token_vesting::instruction;
-use spl_token::instruction::{initialize_mint, mint_to};
+use tpl_token::instruction::{initialize_mint, mint_to};
 
 use std::{convert::TryInto, str::FromStr};
 use spl_associated_token_account::{get_associated_token_address, create_associated_token_account};
 
-use solana_program::{hash::Hash, instruction::Instruction, pubkey::Pubkey, rent::Rent, system_program, sysvar};
+use trezoa_program::{hash::Hash, instruction::Instruction, pubkey::Pubkey, rent::Rent, system_program, sysvar};
 use honggfuzz::fuzz;
-use solana_program_test::{BanksClient, ProgramTest, processor};
-use solana_sdk::{signature::Keypair, signature::Signer, system_instruction, transaction::Transaction, transport::TransportError};
+use trezoa_program_test::{BanksClient, ProgramTest, processor};
+use trezoa_sdk::{signature::Keypair, signature::Signer, system_instruction, transaction::Transaction, transport::TransportError};
 use arbitrary::Arbitrary;
 use std::collections::HashMap;
 use token_vesting::{instruction::{Schedule, VestingInstruction}, processor::Processor};
 use token_vesting::instruction::{init, unlock, change_destination, create};
-use solana_sdk::{account::Account, instruction::InstructionError, transaction::TransactionError};
+use trezoa_sdk::{account::Account, instruction::InstructionError, transaction::TransactionError};
 struct TokenVestingEnv {
     system_program_id: Pubkey,
     token_program_id: Pubkey,
@@ -43,7 +43,7 @@ struct FuzzInstruction {
     // not provoke any errors. (The accounts and contracts will be set up before if needed)
     correct_inputs: bool
 }
-/// Use u8 as an account id to simplify the address space and re-use accounts
+/// Use u8 as an account id to sitplify the address space and re-use accounts
 /// more often.
 type AccountId = u8;
 
@@ -56,7 +56,7 @@ fn main() {
         system_program_id: system_program::id(),
         sysvarclock_program_id: sysvar::clock::id(),
         rent_program_id: sysvar::rent::id(),
-        token_program_id: spl_token::id(),
+        token_program_id: tpl_token::id(),
         vesting_program_id: Pubkey::from_str("VestingbGKPFXCWuBvfkegQfZyiNwAJb9Ss623VQ5DA").unwrap(),
         mint_authority: Keypair::new()
     };
@@ -513,7 +513,7 @@ fn create_fuzzinstruction(
 
     // Credit the source account
     let setup_instruction = mint_to(
-        &spl_token::id(),
+        &tpl_token::id(),
         &mint_key.pubkey(),
         &correct_source_token_account_key,
         &token_vesting_testenv.mint_authority.pubkey(),
@@ -555,11 +555,11 @@ fn mint_init_instruction(
             &mint.pubkey(),
             Rent::default().minimum_balance(82),
             82,
-            &spl_token::id()
+            &tpl_token::id()
 
         ),
         initialize_mint(
-            &spl_token::id(),
+            &tpl_token::id(),
             &mint.pubkey(),
             &mint_authority.pubkey(),
             None,

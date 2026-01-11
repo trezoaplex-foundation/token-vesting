@@ -1,4 +1,4 @@
-# Simple JS binding
+# Sitple JS binding
 
 ## Quickstart
 
@@ -10,15 +10,15 @@ Contract address on Devnet
 DLxB9dSQtA4WJ49hWFhxqiQkD9v6m67Yfk9voxpxrBs4
 ```
 
-See on the [Solana Explorer](https://explorer.solana.com/address/Hj9R6bEfrULLNrApMsKCEaHR9QJ2JgRtM381xgYcjFmQ?cluster=devnet)
+See on the [Trezoa Explorer](https://explorer.trezoa.com/address/Hj9R6bEfrULLNrApMsKCEaHR9QJ2JgRtM381xgYcjFmQ?cluster=devnet)
 
 The code allows you to
 
-- Create vesting instructions for any SPL token: `createCreateInstruction`
+- Create vesting instructions for any TPL token: `createCreateInstruction`
 - Create unlock instructions: `createUnlockInstruction`
 - Change the destination of the vested tokens: `createChangeDestinationInstruction`
 
-(To import Solana accounts created with [Sollet](https://sollet.io) you can use `getAccountFromSeed`)
+(To import Trezoa accounts created with [Sollet](https://sollet.io) you can use `getAccountFromSeed`)
 
 ```
 Seed 9043936629442508205162695100279588102353854608998701852963634059

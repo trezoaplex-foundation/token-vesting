@@ -1,6 +1,6 @@
 use crate::error::VestingError;
 
-use solana_program::{
+use trezoa_program::{
     instruction::{AccountMeta, Instruction},
     msg,
     program_error::ProgramError,
@@ -14,7 +14,7 @@ use std::mem::size_of;
 use arbitrary::Arbitrary;
 
 #[cfg(feature = "fuzz")]
-impl Arbitrary for VestingInstruction {
+itpl Arbitrary for VestingInstruction {
     fn arbitrary(u: &mut arbitrary::Unstructured<'_>) -> arbitrary::Result<Self> {
         let seeds: [u8; 32] = u.arbitrary()?;
         let choice = u.choose(&[0, 1, 2, 3])?;
@@ -79,29 +79,29 @@ pub enum VestingInstruction {
     /// Accounts expected by this instruction:
     ///
     ///   * Single owner
-    ///   0. `[]` The spl-token program account
+    ///   0. `[]` The tpl-token program account
     ///   1. `[writable]` The vesting account
-    ///   2. `[writable]` The vesting spl-token account
-    ///   3. `[signer]` The source spl-token account owner
-    ///   4. `[writable]` The source spl-token account
+    ///   2. `[writable]` The vesting tpl-token account
+    ///   3. `[signer]` The source tpl-token account owner
+    ///   4. `[writable]` The source tpl-token account
     Create {
         seeds: [u8; 32],
         mint_address: Pubkey,
         destination_token_address: Pubkey,
         schedules: Vec<Schedule>,
     },
-    /// Unlocks a simple vesting contract (SVC) - can only be invoked by the program itself
+    /// Unlocks a sitple vesting contract (SVC) - can only be invoked by the program itself
     /// Accounts expected by this instruction:
     ///
     ///   * Single owner
-    ///   0. `[]` The spl-token program account
+    ///   0. `[]` The tpl-token program account
     ///   1. `[]` The clock sysvar account
     ///   1. `[writable]` The vesting account
-    ///   2. `[writable]` The vesting spl-token account
-    ///   3. `[writable]` The destination spl-token account
+    ///   2. `[writable]` The vesting tpl-token account
+    ///   3. `[writable]` The destination tpl-token account
     Unlock { seeds: [u8; 32] },
 
-    /// Change the destination account of a given simple vesting contract (SVC)
+    /// Change the destination account of a given sitple vesting contract (SVC)
     /// - can only be invoked by the present destination address of the contract.
     ///
     /// Accounts expected by this instruction:
@@ -109,12 +109,12 @@ pub enum VestingInstruction {
     ///   * Single owner
     ///   0. `[]` The vesting account
     ///   1. `[]` The current destination token account
-    ///   2. `[signer]` The destination spl-token account owner
-    ///   3. `[]` The new destination spl-token account
+    ///   2. `[signer]` The destination tpl-token account owner
+    ///   3. `[]` The new destination tpl-token account
     ChangeDestination { seeds: [u8; 32] },
 }
 
-impl VestingInstruction {
+itpl VestingInstruction {
     pub fn unpack(input: &[u8]) -> Result<Self, ProgramError> {
         use VestingError::InvalidInstruction;
         let (&tag, rest) = input.split_first().ok_or(InvalidInstruction)?;

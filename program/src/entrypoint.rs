@@ -1,4 +1,4 @@
-use solana_program::{
+use trezoa_program::{
     account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, msg,
     program_error::PrintProgramError, pubkey::Pubkey,
 };
@@ -22,4 +22,4 @@ pub fn process_instruction(
 }
 
 // Deploy the program with the following id:
-// solana_program::declare_id!("VestingbGKPFXCWuBvfkegQfZyiNwAJb9Ss623VQ5DA");
+// trezoa_program::declare_id!("VestingbGKPFXCWuBvfkegQfZyiNwAJb9Ss623VQ5DA");

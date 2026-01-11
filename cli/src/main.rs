@@ -5,23 +5,23 @@ use clap::{
     crate_description, crate_name, crate_version, value_t, App, AppSettings, Arg, ArgMatches,
     SubCommand,
 };
-use solana_clap_utils::{
+use trezoa_clap_utils::{
     input_parsers::{keypair_of, pubkey_of, value_of, values_of},
     input_validators::{is_amount, is_keypair, is_parsable, is_pubkey, is_slot, is_url},
 };
-use solana_client::rpc_client::RpcClient;
-use solana_program::{msg, program_pack::Pack, pubkey::Pubkey, system_program, sysvar};
-use solana_remote_wallet::locator::Locator;
-use solana_remote_wallet::remote_keypair::generate_remote_keypair;
-use solana_remote_wallet::remote_wallet::maybe_wallet_manager;
-use solana_sdk::derivation_path::DerivationPath;
-use solana_sdk::signature::read_keypair_file;
-use solana_sdk::{
+use trezoa_client::rpc_client::RpcClient;
+use trezoa_program::{msg, program_pack::Pack, pubkey::Pubkey, system_program, sysvar};
+use trezoa_remote_wallet::locator::Locator;
+use trezoa_remote_wallet::remote_keypair::generate_remote_keypair;
+use trezoa_remote_wallet::remote_wallet::maybe_wallet_manager;
+use trezoa_sdk::derivation_path::DerivationPath;
+use trezoa_sdk::signature::read_keypair_file;
+use trezoa_sdk::{
     self, commitment_config::CommitmentConfig, signature::Keypair, signature::Signer,
     transaction::Transaction,
 };
 use spl_associated_token_account::{create_associated_token_account, get_associated_token_address};
-use spl_token;
+use tpl_token;
 use std::any::Any;
 use std::convert::{TryFrom, TryInto};
 use token_vesting::{
@@ -43,7 +43,7 @@ fn keypair_or_ledger_of(matches: &ArgMatches<'_>, name: &str) -> Option<Box<dyn 
             let locator = Locator::new_from_uri(&uri_ref).expect(uri_invalid_msg);
 
             let hw_wallet = maybe_wallet_manager()
-                .expect("Remote wallet found, but failed to establish protocol. Maybe the Solana app is not open.")
+                .expect("Remote wallet found, but failed to establish protocol. Maybe the Trezoa app is not open.")
                 .expect("Failed to find a remote wallet, maybe Ledger is not connected or locked.");
 
             // When using a Ledger hardware wallet, confirm the public key of the
@@ -122,7 +122,7 @@ fn command_create_svc(
         ),
         create(
             &program_id,
-            &spl_token::id(),
+            &tpl_token::id(),
             &vesting_pubkey,
             &vesting_token_pubkey,
             &source_token_owner.pubkey(),
@@ -179,7 +179,7 @@ fn command_unlock_svc(
 
     let unlock_instruction = unlock(
         &program_id,
-        &spl_token::id(),
+        &tpl_token::id(),
         &sysvar::clock::id(),
         &vesting_pubkey,
         &vesting_token_pubkey,
@@ -300,7 +300,7 @@ fn main() {
                 .takes_value(true)
                 .global(true)
                 .help(
-                    "Specify the url of the rpc client (solana network).",
+                    "Specify the url of the rpc client (trezoa network).",
                 ),
         )
         .arg(
@@ -418,7 +418,7 @@ fn main() {
                         You start on 1sth of Nov and end on 5th of Nov. \
                         With 1 day frequency it will vest from total amount 5 times \
                         splitted linearly.
-                        Duration must be ISO8601 duration format. Example, P1D.
+                        Duration must be ISO8601 duration format. Exatple, P1D.
                         Internally all dates will be transformed into schedule.",
                     ),
             )
@@ -430,7 +430,7 @@ fn main() {
                     .help(
                         "First time of release in linear vesting. \
                         Must be RFC 3339 and ISO 8601 sortable date time. \
-                        Example, 2022-01-06T20:11:18Z",
+                        Exatple, 2022-01-06T20:11:18Z",
                     ),
             )
             .arg(
@@ -443,7 +443,7 @@ fn main() {
                         If frequency will go over last release time, \
                         tokens will be released later than end date. 
                         Must be RFC 3339 and ISO 8601 sortable date time. \
-                        Example, 2022-17-06T20:11:18Z",
+                        Exatple, 2022-17-06T20:11:18Z",
                     ),
             )
             .arg(

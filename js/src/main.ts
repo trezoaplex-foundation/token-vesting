@@ -5,8 +5,8 @@ import {
   SYSVAR_CLOCK_PUBKEY,
   TransactionInstruction,
   Connection,
-} from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+} from '@trezoa/web3.js';
+import { TOKEN_PROGRAM_ID } from '@trezoa/tpl-token';
 import {
   createChangeDestinationInstruction,
   createCreateInstruction,

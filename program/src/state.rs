@@ -1,4 +1,4 @@
-use solana_program::{
+use trezoa_program::{
     program_error::ProgramError,
     program_pack::{IsInitialized, Pack, Sealed},
     pubkey::Pubkey,
@@ -18,9 +18,9 @@ pub struct VestingScheduleHeader {
     pub is_initialized: bool,
 }
 
-impl Sealed for VestingScheduleHeader {}
+itpl Sealed for VestingScheduleHeader {}
 
-impl Pack for VestingScheduleHeader {
+itpl Pack for VestingScheduleHeader {
     const LEN: usize = 65;
 
     fn pack_into_slice(&self, target: &mut [u8]) {
@@ -52,9 +52,9 @@ impl Pack for VestingScheduleHeader {
     }
 }
 
-impl Sealed for VestingSchedule {}
+itpl Sealed for VestingSchedule {}
 
-impl Pack for VestingSchedule {
+itpl Pack for VestingSchedule {
     const LEN: usize = 16;
 
     fn pack_into_slice(&self, dst: &mut [u8]) {
@@ -82,7 +82,7 @@ impl Pack for VestingSchedule {
     }
 }
 
-impl IsInitialized for VestingScheduleHeader {
+itpl IsInitialized for VestingScheduleHeader {
     fn is_initialized(&self) -> bool {
         self.is_initialized
     }
@@ -112,7 +112,7 @@ pub fn pack_schedules_into_slice(schedules: Vec<VestingSchedule>, target: &mut [
 #[cfg(test)]
 mod tests {
     use super::{unpack_schedules, VestingSchedule, VestingScheduleHeader};
-    use solana_program::{program_pack::Pack, pubkey::Pubkey};
+    use trezoa_program::{program_pack::Pack, pubkey::Pubkey};
 
     #[test]
     fn test_state_packing() {

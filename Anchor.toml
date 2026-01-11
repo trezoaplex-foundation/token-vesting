@@ -5,7 +5,7 @@ members = ["program"]
 
 [provider]
 cluster = "mainnet"
-wallet = "~/.config/solana/id.json"
+wallet = "~/.config/trezoa/id.json"
 
 [programs.mainnet]
 token_vesting = "CChTq6PthWU82YZkbveA3WDf7s97BWhBK4Vx9bmsT743"

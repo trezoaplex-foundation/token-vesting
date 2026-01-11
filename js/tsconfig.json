@@ -17,7 +17,7 @@
     "outDir": "dist",
     "rootDir": "./src",
     "declaration": true,
-    "noImplicitAny": false,
+    "noItplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
     "baseUrl": ".",

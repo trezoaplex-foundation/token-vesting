@@ -1,17 +1,17 @@
 #![cfg(feature = "test-bpf")]
 use std::str::FromStr;
 
-use solana_program::{hash::Hash,
+use trezoa_program::{hash::Hash,
     pubkey::Pubkey,
     rent::Rent,
     sysvar,
     system_program
 };
-use solana_program_test::{processor, ProgramTest};
-use solana_sdk::{account::Account, keyed_account, signature::Keypair, signature::Signer, system_instruction, transaction::Transaction};
+use trezoa_program_test::{processor, ProgramTest};
+use trezoa_sdk::{account::Account, keyed_account, signature::Keypair, signature::Signer, system_instruction, transaction::Transaction};
 use token_vesting::{entrypoint::process_instruction, instruction::Schedule};
 use token_vesting::instruction::{init, unlock, change_destination, create};
-use spl_token::{self, instruction::{initialize_mint, initialize_account, mint_to}};
+use tpl_token::{self, instruction::{initialize_mint, initialize_account, mint_to}};
 
 #[tokio::test]
 async fn test_token_vesting() {
@@ -100,7 +100,7 @@ async fn test_token_vesting() {
     // Create and process the vesting transactions
     let setup_instructions = [
         mint_to(
-            &spl_token::id(), 
+            &tpl_token::id(), 
             &mint.pubkey(), 
             &source_token_account.pubkey(), 
             &mint_authority.pubkey(), 
@@ -118,7 +118,7 @@ async fn test_token_vesting() {
     let test_instructions = [
         create(
             &program_id,
-            &spl_token::id(),
+            &tpl_token::id(),
             &vesting_account_key,
             &vesting_token_account.pubkey(),
             &source_account.pubkey(),
@@ -130,7 +130,7 @@ async fn test_token_vesting() {
         ).unwrap(),
         unlock(
             &program_id,
-            &spl_token::id(),
+            &tpl_token::id(),
             &sysvar::clock::id(),
             &vesting_account_key,
             &vesting_token_account.pubkey(),
@@ -208,11 +208,11 @@ fn mint_init_transaction(
             &mint.pubkey(),
             Rent::default().minimum_balance(82),
             82,
-            &spl_token::id()
+            &tpl_token::id()
     
         ),
         initialize_mint(
-            &spl_token::id(), 
+            &tpl_token::id(), 
             &mint.pubkey(), 
             &mint_authority.pubkey(),
             None, 
@@ -246,10 +246,10 @@ fn create_token_account(
             &token_account.pubkey(),
             Rent::default().minimum_balance(165),
             165,
-            &spl_token::id()
+            &tpl_token::id()
         ),
         initialize_account(
-            &spl_token::id(), 
+            &tpl_token::id(), 
             &token_account.pubkey(), 
             &mint.pubkey(), 
             token_account_owner
