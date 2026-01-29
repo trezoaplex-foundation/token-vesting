@@ -202,7 +202,7 @@ itpl Processor {
         }
 
         if tpl_token_account.key != &tpl_token::id() {
-            msg!("The provided spl token program account is invalid");
+            msg!("The provided tpl token program account is invalid");
             return Err(ProgramError::InvalidArgument)
         }
 

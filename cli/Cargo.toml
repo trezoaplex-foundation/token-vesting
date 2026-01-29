@@ -11,7 +11,7 @@ trezoa-sdk = "1.10.38"
 trezoa-clap-utils = "1.10.38"
 token-vesting =  { version = "0.1.0", path="../program", features=["no-entrypoint"] }
 tpl-token = {version = "3.3.1", features = ["no-entrypoint"]}
-spl-associated-token-account = {version = "1.1.1", features = ["no-entrypoint"]}
+tpl-associated-token-account = {version = "1.1.1", features = ["no-entrypoint"]}
 trezoa-remote-wallet = "1.10.38"
 uriparse = "0.6.3"
 clap = "2.33.3"

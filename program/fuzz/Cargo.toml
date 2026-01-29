@@ -12,7 +12,7 @@ trezoa-program = "1.5.6"
 trezoa-sdk = "1.5.6"
 trezoa-program-test = "1.5.6"
 tpl-token = { version = "3.0.1", features = ["no-entrypoint"] }
-spl-associated-token-account = { version = "1.0.2", features = ["no-entrypoint"] }
+tpl-associated-token-account = { version = "1.0.2", features = ["no-entrypoint"] }
 token-vesting =  { version = "0.1.0", path="..", features=["fuzz", "no-entrypoint"] }
 tokio = { version = "1.0", features = ["macros"]}
 

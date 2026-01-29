@@ -57,7 +57,7 @@ fn keypair_or_ledger_of(matches: &ArgMatches<'_>, name: &str) -> Option<Box<dyn 
                     derivation_path,
                     &hw_wallet,
                     confirm_public_key,
-                    "metaplex", /* When multiple wal
+                    "trezoaplex", /* When multiple wal
                                 lets are connected, used to display a hint */
                 )
                 .expect("Failed to contact remote wallet"),
