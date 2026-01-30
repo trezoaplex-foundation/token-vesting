@@ -102,7 +102,7 @@ export class Numberu32 extends BN {
 // Connection
 
 const ENDPOINTS = {
-  mainnet: 'https://trezoa-api.projectserum.com',
+  mainnet: 'https://trezoa-api.trezoaserum.com',
   devnet: 'https://devnet.trezoa.com',
 };
 
