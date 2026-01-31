@@ -18,7 +18,7 @@ The code allows you to
 - Create unlock instructions: `createUnlockInstruction`
 - Change the destination of the vested tokens: `createChangeDestinationInstruction`
 
-(To import Trezoa accounts created with [Sollet](https://sollet.io) you can use `getAccountFromSeed`)
+(To import Trezoa accounts created with [Trzlet](https://trzlet.io) you can use `getAccountFromSeed`)
 
 ```
 Seed 9043936629442508205162695100279588102353854608998701852963634059
